@@ -11,6 +11,7 @@ opencv_test.pgr: obj/opencv_simple.o obj/gaussianNoise.o
 	$(CC) $(CFLAGS) $^ -o $@  $(LDFLAGS)
 
 obj/%.o: %.cpp
+	mkdir -p obj
 	$(CC) $(CFLAGS) $< -c -o $@
 
 proper :
