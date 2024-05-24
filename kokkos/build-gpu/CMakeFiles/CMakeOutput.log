@@ -1,0 +1,473 @@
+The system is: Linux - 3.10.0-1160.2.2.el7.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /apps/2021/gcc/10.2/bin/gcc 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is GNU, found in "/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/3.18.4/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /apps/2021/gcc/10.2/bin/c++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/3.18.4/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_85e88/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_85e88.dir/build.make CMakeFiles/cmTC_85e88.dir/build
+gmake[1]: Entering directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o
+/apps/2021/gcc/10.2/bin/gcc   -v -o CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -c /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCCompilerABI.c
+Using built-in specs.
+COLLECT_GCC=/apps/2021/gcc/10.2/bin/gcc
+Target: x86_64-pc-linux-gnu
+Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/cc1 -quiet -v /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -version -o /tmp/cc1PDk88.s
+GNU C17 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 10.2.0, GMP version 6.1.2, MPFR version 4.0.2-p9, MPC version 1.1.0, isl version none
+warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.
+warning: MPC header version 1.1.0 differs from library version 1.0.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/apps/2021/cuda/10.1/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /apps/2021/opencv/4.5.1/include/opencv4
+ /apps/2021/cuda/10.1/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include
+ /usr/local/include
+ /apps/2021/gcc/10.2/include
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed
+ /usr/include
+End of search list.
+GNU C17 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 10.2.0, GMP version 6.1.2, MPFR version 4.0.2-p9, MPC version 1.1.0, isl version none
+warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.
+warning: MPC header version 1.1.0 differs from library version 1.0.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: a606591a9d78f0709a921327b6f02460
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o /tmp/cc1PDk88.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64'
+Linking C executable cmTC_85e88
+/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/bin/cmake -E cmake_link_script CMakeFiles/cmTC_85e88.dir/link.txt --verbose=1
+/apps/2021/gcc/10.2/bin/gcc  -v CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -o cmTC_85e88 
+Using built-in specs.
+COLLECT_GCC=/apps/2021/gcc/10.2/bin/gcc
+COLLECT_LTO_WRAPPER=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_85e88' '-mtune=generic' '-march=x86-64'
+ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2 -plugin /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqNzPsb.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_85e88 /lib/../lib64/crt1.o /lib/../lib64/crti.o /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o -L/apps/2021/opencv/4.5.1/lib64/../lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib -L/apps/2021/opencv/4.5.1/lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../.. CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_85e88' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/apps/2021/opencv/4.5.1/include/opencv4]
+    add: [/apps/2021/cuda/10.1/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+    add: [/usr/local/include]
+    add: [/apps/2021/gcc/10.2/include]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/apps/2021/opencv/4.5.1/include/opencv4] ==> [/apps/2021/opencv/4.5.1/include/opencv4]
+  collapse include dir [/apps/2021/cuda/10.1/include] ==> [/apps/2021/cuda/10.1/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/apps/2021/gcc/10.2/include] ==> [/apps/2021/gcc/10.2/include]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/apps/2021/opencv/4.5.1/include/opencv4;/apps/2021/cuda/10.1/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include;/usr/local/include;/apps/2021/gcc/10.2/include;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake cmTC_85e88/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_85e88.dir/build.make CMakeFiles/cmTC_85e88.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/apps/2021/gcc/10.2/bin/gcc   -v -o CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -c /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCCompilerABI.c]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/apps/2021/gcc/10.2/bin/gcc]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/cc1 -quiet -v /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCCompilerABI.c -quiet -dumpbase CMakeCCompilerABI.c -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -version -o /tmp/cc1PDk88.s]
+  ignore line: [GNU C17 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 10.2.0  GMP version 6.1.2  MPFR version 4.0.2-p9  MPC version 1.1.0  isl version none]
+  ignore line: [warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.]
+  ignore line: [warning: MPC header version 1.1.0 differs from library version 1.0.1.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [ignoring duplicate directory "/apps/2021/cuda/10.1/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /apps/2021/opencv/4.5.1/include/opencv4]
+  ignore line: [ /apps/2021/cuda/10.1/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /apps/2021/gcc/10.2/include]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C17 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 10.2.0  GMP version 6.1.2  MPFR version 4.0.2-p9  MPC version 1.1.0  isl version none]
+  ignore line: [warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.]
+  ignore line: [warning: MPC header version 1.1.0 differs from library version 1.0.1.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: a606591a9d78f0709a921327b6f02460]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o /tmp/cc1PDk88.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+  ignore line: [COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking C executable cmTC_85e88]
+  ignore line: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/bin/cmake -E cmake_link_script CMakeFiles/cmTC_85e88.dir/link.txt --verbose=1]
+  ignore line: [/apps/2021/gcc/10.2/bin/gcc  -v CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -o cmTC_85e88 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/apps/2021/gcc/10.2/bin/gcc]
+  ignore line: [COLLECT_LTO_WRAPPER=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_85e88' '-mtune=generic' '-march=x86-64']
+  link line: [ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2 -plugin /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccqNzPsb.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_85e88 /lib/../lib64/crt1.o /lib/../lib64/crti.o /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o -L/apps/2021/opencv/4.5.1/lib64/../lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib -L/apps/2021/opencv/4.5.1/lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../.. CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccqNzPsb.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_85e88] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o] ==> ignore
+    arg [-L/apps/2021/opencv/4.5.1/lib64/../lib64] ==> dir [/apps/2021/opencv/4.5.1/lib64/../lib64]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib]
+    arg [-L/apps/2021/opencv/4.5.1/lib64] ==> dir [/apps/2021/opencv/4.5.1/lib64]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..]
+    arg [CMakeFiles/cmTC_85e88.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/apps/2021/opencv/4.5.1/lib64/../lib64] ==> [/apps/2021/opencv/4.5.1/lib64]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64] ==> [/apps/2021/gcc/10.2/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib]
+  collapse library dir [/apps/2021/opencv/4.5.1/lib64] ==> [/apps/2021/opencv/4.5.1/lib64]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..] ==> [/apps/2021/gcc/10.2/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit dirs: [/apps/2021/opencv/4.5.1/lib64;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0;/apps/2021/gcc/10.2/lib64;/lib64;/usr/lib64;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib;/apps/2021/gcc/10.2/lib]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake cmTC_a0a88/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a0a88.dir/build.make CMakeFiles/cmTC_a0a88.dir/build
+gmake[1]: Entering directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o
+/apps/2021/gcc/10.2/bin/c++   -v -o CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -c /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/apps/2021/gcc/10.2/bin/c++
+Target: x86_64-pc-linux-gnu
+Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/cc1plus -quiet -v -D_GNU_SOURCE /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/ccs5UEAg.s
+GNU C++14 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 10.2.0, GMP version 6.1.2, MPFR version 4.0.2-p9, MPC version 1.1.0, isl version none
+warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.
+warning: MPC header version 1.1.0 differs from library version 1.0.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/apps/2021/cuda/10.1/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /apps/2021/opencv/4.5.1/include/opencv4
+ /apps/2021/cuda/10.1/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include
+ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include
+ /usr/local/include
+ /apps/2021/gcc/10.2/include
+ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed
+ /usr/include
+End of search list.
+GNU C++14 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 10.2.0, GMP version 6.1.2, MPFR version 4.0.2-p9, MPC version 1.1.0, isl version none
+warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.
+warning: MPC header version 1.1.0 differs from library version 1.0.1.
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 530c4d54e3e480baeb90f396009f83dc
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ as -v --64 -o CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccs5UEAg.s
+GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7
+COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+Linking CXX executable cmTC_a0a88
+/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0a88.dir/link.txt --verbose=1
+/apps/2021/gcc/10.2/bin/c++  -v CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a0a88 
+Using built-in specs.
+COLLECT_GCC=/apps/2021/gcc/10.2/bin/c++
+COLLECT_LTO_WRAPPER=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 10.2.0 (GCC) 
+COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/
+LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a0a88' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2 -plugin /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv8LH3i.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_a0a88 /lib/../lib64/crt1.o /lib/../lib64/crti.o /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o -L/apps/2021/opencv/4.5.1/lib64/../lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib -L/apps/2021/opencv/4.5.1/lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../.. CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a0a88' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+gmake[1]: Leaving directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/apps/2021/opencv/4.5.1/include/opencv4]
+    add: [/apps/2021/cuda/10.1/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+    add: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+    add: [/usr/local/include]
+    add: [/apps/2021/gcc/10.2/include]
+    add: [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/apps/2021/opencv/4.5.1/include/opencv4] ==> [/apps/2021/opencv/4.5.1/include/opencv4]
+  collapse include dir [/apps/2021/cuda/10.1/include] ==> [/apps/2021/cuda/10.1/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+  collapse include dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0] ==> [/apps/2021/gcc/10.2/include/c++/10.2.0]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu] ==> [/apps/2021/gcc/10.2/include/c++/10.2.0/x86_64-pc-linux-gnu]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward] ==> [/apps/2021/gcc/10.2/include/c++/10.2.0/backward]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/apps/2021/gcc/10.2/include] ==> [/apps/2021/gcc/10.2/include]
+  collapse include dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/apps/2021/opencv/4.5.1/include/opencv4;/apps/2021/cuda/10.1/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include;/apps/2021/gcc/10.2/include/c++/10.2.0;/apps/2021/gcc/10.2/include/c++/10.2.0/x86_64-pc-linux-gnu;/apps/2021/gcc/10.2/include/c++/10.2.0/backward;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include;/usr/local/include;/apps/2021/gcc/10.2/include;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake cmTC_a0a88/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a0a88.dir/build.make CMakeFiles/cmTC_a0a88.dir/build]
+  ignore line: [gmake[1]: Entering directory `/home/groubahiefissa/chps/chps0801_projet/kokkos/parallel/test/build-gpu/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/apps/2021/gcc/10.2/bin/c++   -v -o CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -c /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/apps/2021/gcc/10.2/bin/c++]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/cc1plus -quiet -v -D_GNU_SOURCE /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/share/cmake-3.18/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpbase CMakeCXXCompilerABI.cpp -mtune=generic -march=x86-64 -auxbase-strip CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -version -o /tmp/ccs5UEAg.s]
+  ignore line: [GNU C++14 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 10.2.0  GMP version 6.1.2  MPFR version 4.0.2-p9  MPC version 1.1.0  isl version none]
+  ignore line: [warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.]
+  ignore line: [warning: MPC header version 1.1.0 differs from library version 1.0.1.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [ignoring duplicate directory "/apps/2021/cuda/10.1/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /apps/2021/opencv/4.5.1/include/opencv4]
+  ignore line: [ /apps/2021/cuda/10.1/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/include]
+  ignore line: [ /apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/include]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/x86_64-pc-linux-gnu]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../include/c++/10.2.0/backward]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /apps/2021/gcc/10.2/include]
+  ignore line: [ /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/include-fixed]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++14 (GCC) version 10.2.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 10.2.0  GMP version 6.1.2  MPFR version 4.0.2-p9  MPC version 1.1.0  isl version none]
+  ignore line: [warning: MPFR header version 4.0.2-p9 differs from library version 4.0.1.]
+  ignore line: [warning: MPC header version 1.1.0 differs from library version 1.0.1.]
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 530c4d54e3e480baeb90f396009f83dc]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccs5UEAg.s]
+  ignore line: [GNU assembler version 2.27 (x86_64-redhat-linux) using BFD version version 2.27-44.base.el7]
+  ignore line: [COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  ignore line: [Linking CXX executable cmTC_a0a88]
+  ignore line: [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/cmake-3.18.4-kw3wpvkxke7lo3atixjcvt4roclfopip/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a0a88.dir/link.txt --verbose=1]
+  ignore line: [/apps/2021/gcc/10.2/bin/c++  -v CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a0a88 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/apps/2021/gcc/10.2/bin/c++]
+  ignore line: [COLLECT_LTO_WRAPPER=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: ./configure --prefix=/apps/2021/gcc/10.2 --disable-multilib]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 10.2.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/]
+  ignore line: [LIBRARY_PATH=/apps/2021/opencv/4.5.1/lib64/../lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib/:/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib/:/apps/2021/opencv/4.5.1/lib64/:/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_a0a88' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2 -plugin /apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so -plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccv8LH3i.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_a0a88 /lib/../lib64/crt1.o /lib/../lib64/crti.o /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o -L/apps/2021/opencv/4.5.1/lib64/../lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib -L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib -L/apps/2021/opencv/4.5.1/lib64 -L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../.. CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/apps/2021/gcc/10.2/libexec/gcc/x86_64-pc-linux-gnu/10.2.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccv8LH3i.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_a0a88] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtbegin.o] ==> ignore
+    arg [-L/apps/2021/opencv/4.5.1/lib64/../lib64] ==> dir [/apps/2021/opencv/4.5.1/lib64/../lib64]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib]
+    arg [-L/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib] ==> dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib]
+    arg [-L/apps/2021/opencv/4.5.1/lib64] ==> dir [/apps/2021/opencv/4.5.1/lib64]
+    arg [-L/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..] ==> dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..]
+    arg [CMakeFiles/cmTC_a0a88.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/apps/2021/opencv/4.5.1/lib64/../lib64] ==> [/apps/2021/opencv/4.5.1/lib64]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0] ==> [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../../../lib64] ==> [/apps/2021/gcc/10.2/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib]
+  collapse library dir [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib] ==> [/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib]
+  collapse library dir [/apps/2021/opencv/4.5.1/lib64] ==> [/apps/2021/opencv/4.5.1/lib64]
+  collapse library dir [/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0/../../..] ==> [/apps/2021/gcc/10.2/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/apps/2021/opencv/4.5.1/lib64;/apps/2021/gcc/10.2/lib/gcc/x86_64-pc-linux-gnu/10.2.0;/apps/2021/gcc/10.2/lib64;/lib64;/usr/lib64;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/openssl-1.1.1h-iwybd6raqg2jisesulhn4eq4u6pua4r5/lib;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/zlib-1.2.11-cd5sn7qr4dpsl52yco7o4un6svatshid/lib;/apps/spack/0.16.0/opt/spack/linux-rhel7-skylake_avx512/gcc-10.2.0/ncurses-6.2-hjedt2uy7o2piyycr3ttni2puoezbfu6/lib;/apps/2021/gcc/10.2/lib]
+  implicit fwks: []
+
+
