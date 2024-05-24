@@ -2,9 +2,6 @@
 
 #include <omp.h>
 
-#include <opencv2/opencv.hpp>
-#include <omp.h>
-
 using namespace std;
 
 void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
@@ -15,12 +12,12 @@ void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
 
     int N = A_copy.rows;
     int M = A_copy.cols;
+    int cn = A_copy.channels();
 
     cv::Mat A_iter(A_copy.size(), A_copy.type());
 
     uint8_t* new_pixelPtr = (uint8_t*)A_iter.data;
     uint8_t* pixelPtr = (uint8_t*)A_copy.data;
-    int cn = A_copy.channels();
 
     // Apply the Jacobi iteration
     for (int iter = 0; iter < iterations; ++iter) {
@@ -39,7 +36,8 @@ void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
                     // Right pixel
                     uint8_t p_right = pixelPtr[i*M*cn + (j+1)*cn + c];
                     // Compute the new pixel value
-                    uint8_t new_pixel = 0.25 * (p_current + p_top + p_bottom + p_left + p_right);
+                    // We multiply by 0.2 to avoid division by 5 which is slower
+                    uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
 
                     new_pixelPtr[i*M*cn + j*cn + c] = new_pixel;
                 }

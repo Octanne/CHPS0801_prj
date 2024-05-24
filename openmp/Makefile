@@ -7,7 +7,7 @@ LDFLAGS=
 CFLAGS += $(shell pkg-config --cflags opencv4) -fopenmp
 LDFLAGS += $(shell pkg-config --libs opencv4) -fopenmp
 
-opencv_test.pgr: obj/opencv_simple.o obj/gaussianNoise.o
+opencv_test.pgr: obj/opencv_simple.o obj/gaussianNoise.o obj/jacobi.o obj/gauss_seidel.o
 	$(CC) $(CFLAGS) $^ -o $@  $(LDFLAGS)
 
 obj/%.o: %.cpp

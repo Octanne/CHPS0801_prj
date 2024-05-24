@@ -1,7 +1,8 @@
 #include <iostream>
 
 #include "gaussianNoise.h"
-#include "jacobi.cpp"
+#include "jacobi.h"
+#include "gauss_seidel.h"
 
 using namespace cv;
 using namespace std;
@@ -39,9 +40,12 @@ int main(int argc, char** argv)
     //AddGaussianNoise_Opencv(img,mColorNoise,10,30.0);//I recommend to use this way!
 
     Mat mJacobi_seq(img.size(),img.type());
+    Mat m_Seidel_seq(img.size(),img.type());
 
-    // We will use the jacobi_cpu_openmp function
+    // We will use the jacobi_sequential function
     jacobi_sequential(mColorNoise, mJacobi_seq, 1);
+    // We will use the gauss_seidel_sequential function
+    gauss_seidel_sequential(mColorNoise, m_Seidel_seq, 1);
 
     /*
     uint8_t* pixelPtr = (uint8_t*)img.data;
@@ -68,6 +72,7 @@ int main(int argc, char** argv)
     //imwrite("res/grey_res.jpg", img);
     imwrite("res/noised_res.jpg", mColorNoise);
     imwrite("res/jacobi_seq.jpg", mJacobi_seq);
+    imwrite("res/gauss_seidel_seq.jpg", m_Seidel_seq);
     
     return 0;
 }
