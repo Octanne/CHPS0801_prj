@@ -16,8 +16,8 @@ int main(int argc, char** argv)
     "{filter |jacobi|filter to apply (jacobi - jacobi_cpu - jacobi_gpu - gauss_seidel - gauss_seidel_fronts_cpu - gauss_seidel_fronts_gpu - gauss_seidel_rb_cpu - gauss_seidel_rb_gpu)}"
     "{help h usage ? | | print this message}"
     "{iteration |1|number of iterations for the filter}"
-    "{noise_iter |15|number of iterations of the noise maker}"
     "{cpu |8|number of threads for the filter}"
+    "{noise_iter |15|number of iterations of the noise maker}"
     ;
     CommandLineParser parser(argc, argv, keys);
 
