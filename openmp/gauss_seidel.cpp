@@ -183,33 +183,24 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
 /**
  * Explications :
 
-    1. Ajout de bordures : Nous ajoutons une bordure de 1 pixel tout autour de l'image d'entrée pour faciliter le traitement des pixels aux bords de l'image.
+    1. Bordure : Une bordure d'un pixel est ajoutée autour de l'image d'entrée pour éviter les problèmes de débordement de mémoire.
 
-    2. Initialisation des matrices : A_copy contient l'image d'entrée avec bordures, A_iter est utilisée pour stocker les nouvelles valeurs de pixels à chaque itération.
+    2. "Cases rouges" et "cases noires" : Les indices (i, j) sont classifiés comme "rouges" ou "noirs" en utilisant la condition (i + j) % 2. Les pixels rouges sont mis à jour dans la première boucle, et les pixels noirs dans la seconde boucle.
 
-    3. Boucle d'itération : La boucle principale pour les itérations de Gauss-Seidel.
+    3. Parallélisation avec OpenMP : Les deux boucles for sont parallélisées indépendamment en utilisant #pragma omp parallel for collapse(2) pour maximiser l'efficacité de la parallélisation.
+    
+    4. Barrières entre les phases : Une barrière est utilisée pour synchroniser les tâches après la phase rouge afin de garantir que tous les pixels rouges sont mis à jour avant de commencer la phase noire.
 
-    4. Phase rouge :
-        Nous mettons à jour tous les pixels rouges en parallèle.
-        Les pixels rouges sont ceux où (i + j) % 2 == 0.
+    5. Mise à jour des Pixels : Pour chaque pixel, on calcule la nouvelle valeur en utilisant les voisins directs (haut, bas, gauche, droite) et on met à jour le pixel dans l'image de sortie A_new.
 
-    5. Barrière de synchronisation : Nous utilisons #pragma omp barrier pour synchroniser toutes les tâches après la phase rouge afin de garantir que tous les pixels rouges sont mis à jour avant de commencer la phase noire.
+    6. Copie de l'Image : Après chaque itération, l'image mise à jour A_new est copiée dans A_copy pour la prochaine itération, en prenant soin de ne copier que la région sans bordure.
 
-    6. Phase noire :
-        Nous mettons à jour tous les pixels noirs en parallèle.
-        Les pixels noirs sont ceux où (i + j) % 2 != 0.
-
-    7. Barrière de synchronisation : Nous utilisons #pragma omp barrier pour synchroniser toutes les tâches après la phase noire afin de garantir que tous les pixels noirs sont mis à jour avant de passer à l'itération suivante.
-
-    8. Mise à jour des pointeurs : Nous échangeons les pointeurs pixelPtr et new_pixelPtr pour préparer la prochaine itération.
-
-    9. Sortie des résultats : À la fin des itérations, nous copions le résultat final dans A_new sans les bordures ajoutées.
-
-   Cette méthode garantit que les dépendances entre les pixels sont respectées,
-   permettant ainsi une parallélisation efficace tout en maintenant l'exactitude 
-   de l'algorithme de Gauss-Seidel.
+  Cette approche maximise la parallélisation tout en gérant 
+  correctement les dépendances entre les pixels pour garantir
+  une convergence correcte de l'algorithme Gauss-Seidel.
 */
 void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
+    // Ajout d'une bordure de 1 pixel tout autour de l'image d'entrée
     cv::Mat A_copy(cv::Size(A.size().width + 2, A.size().height + 2), A.type());
     cv::copyMakeBorder(A, A_copy, 1, 1, 1, 1, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
 
@@ -217,27 +208,21 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
     int M = A_copy.cols;
     int cn = A_copy.channels();
 
-    cv::Mat A_iter(A_copy.size(), A_copy.type());
-
-    uint8_t* pixelPtr = (uint8_t*)A_copy.data;
-    uint8_t* new_pixelPtr = (uint8_t*)A_iter.data;
-
     for (int iter = 0; iter < iterations; ++iter) {
-        // Red phase
-        #pragma omp parallel for shared(pixelPtr, new_pixelPtr)
-        for (int index = 0; index < (N - 2) * (M - 2); ++index) {
-            int i = 1 + index / (M - 2);
-            int j = 1 + index % (M - 2);
-
-            if ((i + j) % 2 == 0) {  // Red phase condition
-                for (int c = 0; c < cn; ++c) {
-                    uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
-                    uint8_t p_top = pixelPtr[(i - 1) * M * cn + j * cn + c];
-                    uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
-                    uint8_t p_left = pixelPtr[i * M * cn + (j - 1) * cn + c];
-                    uint8_t p_right = pixelPtr[i * M * cn + (j + 1) * cn + c];
-                    uint8_t new_pixel = static_cast<uint8_t>(0.2 * (p_current + p_top + p_bottom + p_left + p_right));
-                    new_pixelPtr[i * M * cn + j * cn + c] = new_pixel;
+        // Mise à jour des "cases rouges"
+        #pragma omp parallel for collapse(2)
+        for (int i = 1; i < N - 1; ++i) {
+            for (int j = 1; j < M - 1; ++j) {
+                if ((i + j) % 2 == 0) { // "cases rouges"
+                    for (int c = 0; c < cn; ++c) {
+                        uint8_t p_current = A_copy.at<cv::Vec3b>(i, j)[c];
+                        uint8_t p_top = A_copy.at<cv::Vec3b>(i - 1, j)[c];
+                        uint8_t p_bottom = A_copy.at<cv::Vec3b>(i + 1, j)[c];
+                        uint8_t p_left = A_copy.at<cv::Vec3b>(i, j - 1)[c];
+                        uint8_t p_right = A_copy.at<cv::Vec3b>(i, j + 1)[c];
+                        uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
+                        A_new.at<cv::Vec3b>(i - 1, j - 1)[c] = new_pixel;
+                    }
                 }
             }
         }
@@ -245,36 +230,29 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
         // Synchronize to ensure red phase is done
         #pragma omp barrier
 
-        // Black phase
-        #pragma omp parallel for shared(pixelPtr, new_pixelPtr)
-        for (int index = 0; index < (N - 2) * (M - 2); ++index) {
-            int i = 1 + index / (M - 2);
-            int j = 1 + index % (M - 2);
-
-            if ((i + j) % 2 == 1) {  // Black phase condition
-                for (int c = 0; c < cn; ++c) {
-                    uint8_t p_current = new_pixelPtr[i * M * cn + j * cn + c];
-                    uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
-                    uint8_t p_bottom = new_pixelPtr[(i + 1) * M * cn + j * cn + c];
-                    uint8_t p_left = new_pixelPtr[i * M * cn + (j - 1) * cn + c];
-                    uint8_t p_right = new_pixelPtr[i * M * cn + (j + 1) * cn + c];
-                    uint8_t new_pixel = static_cast<uint8_t>(0.2 * (p_current + p_top + p_bottom + p_left + p_right));
-                    new_pixelPtr[i * M * cn + j * cn + c] = new_pixel;
+        // Mise à jour des "cases noires"
+        #pragma omp parallel for collapse(2)
+        for (int i = 1; i < N - 1; ++i) {
+            for (int j = 1; j < M - 1; ++j) {
+                if ((i + j) % 2 != 0) { // "cases noires"
+                    for (int c = 0; c < cn; ++c) {
+                        uint8_t p_current = A_copy.at<cv::Vec3b>(i, j)[c];
+                        uint8_t p_top = A_copy.at<cv::Vec3b>(i - 1, j)[c];
+                        uint8_t p_bottom = A_copy.at<cv::Vec3b>(i + 1, j)[c];
+                        uint8_t p_left = A_copy.at<cv::Vec3b>(i, j - 1)[c];
+                        uint8_t p_right = A_copy.at<cv::Vec3b>(i, j + 1)[c];
+                        uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
+                        A_new.at<cv::Vec3b>(i - 1, j - 1)[c] = new_pixel;
+                    }
                 }
             }
         }
 
-        // Synchronize to ensure black phase is done
-        #pragma omp barrier
-
-        std::swap(pixelPtr, new_pixelPtr);
+        A_new.copyTo(A_copy(cv::Rect(1, 1, A_new.cols, A_new.rows)));
         std::cout << "Iteration " << iter << " done\r";
     }
 
-    //cv::Mat A_result(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2));
-    //A_result.copyTo(A_new);
-    // Copy the middle of the image to the output image
-    A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
+    A_copy(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2)).copyTo(A_new);
 }
 
 // Gauss-Seidel Red-Black Parallel GPU : rend plus sombre l'image
