@@ -1,113 +1,84 @@
+#include "jacobi.h"
 #include <iostream>
 #include <unistd.h>
-
-#include "gaussianNoise.h"
-
-using namespace cv;
-using namespace std;
-
-#define NOISE_ITER 15
-#define PADDING 1
-
 #include <Kokkos_Core.hpp>
 
-// Jacobi iteration function for GPU
-void jacobi_iteration(Kokkos::View<double ***> A, Kokkos::View<double ***> A_new, int iterations)
-{
-    int N = A.extent(0);
-    int M = A.extent(1);
-    for (int iter = 0; iter < iterations; ++iter)
-    {
-        Kokkos::parallel_for("Jacobi", Kokkos::MDRangePolicy<Kokkos::Rank<3>>({0, 0, 0}, {N, M, 3}), KOKKOS_LAMBDA(int i, int j, int c) {
-            if (i > 0 && i < N-1 && j > 0 && j < M-1) {
-                A_new(i,j,c) = 0.2 * (A(i,j,c) + A(i+1,j,c) + A(i-1,j,c) + A(i,j+1,c) + A(i,j-1,c));
-            } 
-        });
-        //Kokkos::deep_copy(A, A_new);
-        Kokkos::fence();
-        printf("Iteration %d\n", iter);
+using namespace std;
+
+/**
+ * Explications :
+    1. Boucle d'itération : La boucle principale pour les itérations de Jacobi.
+    2. Mise à jour des pixels : Chaque pixel est mis à jour en séquentiel.
+       La nouvelle valeur est calculée comme la moyenne des pixels voisins.
+    3. Copie des résultats : Après chaque itération, A_new est copié dans A.
+ */
+void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
+    for (int it = 0; it < iterations; ++it) {
+        for (int i = 1; i < A.rows - 1; ++i) {
+            for (int j = 1; j < A.cols - 1; ++j) {
+                A_new.at<double>(i, j) = 0.2 * (A.at<double>(i, j) + A.at<double>(i+1, j) + A.at<double>(i-1, j) + A.at<double>(i, j+1) + A.at<double>(i, j-1));
+            }
+        }
+        A = A_new.clone();
     }
 }
 
-void initialize(Kokkos::View<double ***> A, Kokkos::View<double ***> A_new, uint8_t *pixelPtr, int cn)
-{
-    int N = A.extent(0);
-    int M = A.extent(1);
-    Kokkos::parallel_for("Initialize", Kokkos::MDRangePolicy<Kokkos::Rank<3>>({0, 0, 0}, {N, M, 3}), KOKKOS_LAMBDA(int i, int j, int c) {
-        A(i, j, c) = pixelPtr[i * M * cn + j * cn + c];
-        A_new(i, j, c) = 0;
-    });
-}
-
-int main(int argc, char **argv)
-{
-    CommandLineParser parser(argc, argv,
-                             "{@input   |../../img/lena.jpg|input image}");
-    parser.printMessage();
-
-    String imageName = parser.get<String>("@input");
-    string image_path = samples::findFile(imageName);
-    Mat img = imread(image_path, IMREAD_COLOR);
-    if (img.empty())
+/**
+ * Explications :
+    1. Initialisation de Kokkos : Kokkos est initialisé pour l'exécution parallèle.
+    2. Boucle d'itération : La boucle principale pour les itérations de Jacobi.
+    3. Parallélisation sur CPU : Utilisation de Kokkos pour exécuter la mise à jour des pixels en parallèle sur CPU.
+    4. Mise à jour des pixels : Pour chaque pixel, la nouvelle valeur est calculée 
+       comme la moyenne des pixels voisins.
+    5. Copie des résultats : Après chaque itération, A_new est copié dans A.
+ */
+void jacobi_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
+    Kokkos::initialize();
     {
-        std::cout << "Could not read the image: " << image_path << std::endl;
-        return 1;
-    }
-
-    Mat mColorNoise(img.size(), img.type());
-
-    for (int i = 0; i < NOISE_ITER; ++i)
-    {
-        AddGaussianNoise(img, mColorNoise, 0, 30.0);
-        if (i < (NOISE_ITER - 1))
-        {
-            uint8_t *tmp = img.data;
-            img.data = mColorNoise.data;
-            mColorNoise.data = tmp;
+        for (int it = 0; it < iterations; ++it) {
+            Kokkos::parallel_for("jacobi_cpu", Kokkos::MDRangePolicy<Kokkos::Rank<2>>({1, 1}, {A.rows - 1, A.cols - 1}), KOKKOS_LAMBDA(const int i, const int j) {
+                A_new.at<double>(i, j) = 0.2 * (A.at<double>(i, j) + A.at<double>(i+1, j) + A.at<double>(i-1, j) + A.at<double>(i, j+1) + A.at<double>(i, j-1));
+            });
+            A = A_new.clone();
         }
     }
+    Kokkos::finalize();
+}
 
-    // AddGaussianNoise_Opencv(img,mColorNoise,10,30.0);//I recommend to use this way!
-
-    uint8_t *pixelPtr = (uint8_t *)img.data;
-    int cn = img.channels();
-
-    ///////////////////////////////////////////////
-    // Manage Kokkos allocations
-    ///////////////////////////////////////////////
-
-    Kokkos::initialize(argc, argv);
+/**
+ * Explications :
+    1. Initialisation de Kokkos : Kokkos est initialisé pour l'exécution parallèle.
+    2. Allocation de la mémoire GPU : Utilisation de Kokkos::View pour allouer de la mémoire sur le GPU.
+    3. Copie des données vers le GPU : Les données de la matrice A sont copiées vers le GPU.
+    4. Boucle d'itération : La boucle principale pour les itérations de Jacobi.
+    5. Parallélisation sur GPU : Utilisation de Kokkos pour exécuter la mise à jour des pixels en parallèle sur GPU.
+    6. Mise à jour des pixels : Pour chaque pixel, la nouvelle valeur est calculée 
+       comme la moyenne des pixels voisins.
+    7. Copie des résultats : Après chaque itération, les données sont copiées de d_A_new vers d_A.
+    8. Copie des résultats vers le CPU : À la fin des itérations, les résultats sont copiés vers A.
+ */
+void jacobi_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
+    Kokkos::initialize();
     {
-        int iterations = 1;
-        Kokkos::View<double ***> A("A", img.rows, img.cols, 3);
-        Kokkos::View<double ***> A_new("A_new", img.rows, img.cols, 3);
+        Kokkos::View<double**> d_A("A", A.rows, A.cols);
+        Kokkos::View<double**> d_A_new("A_new", A.rows, A.cols);
 
-        initialize(A, A_new, pixelPtr, cn);
+        // Copie des données vers le GPU
+        Kokkos::parallel_for("copy_to_device", Kokkos::MDRangePolicy<Kokkos::Rank<2>>({0, 0}, {A.rows, A.cols}), KOKKOS_LAMBDA(const int i, const int j) {
+            d_A(i, j) = A.at<double>(i, j);
+        });
 
-        Kokkos::Timer timer;
+        for (int it = 0; it < iterations; ++it) {
+            Kokkos::parallel_for("jacobi_gpu", Kokkos::MDRangePolicy<Kokkos::Rank<2>>({1, 1}, {A.rows - 1, A.cols - 1}), KOKKOS_LAMBDA(const int i, const int j) {
+                d_A_new(i, j) = 0.2 * (d_A(i, j) + d_A(i+1, j) + d_A(i-1, j) + d_A(i, j+1) + d_A(i, j-1));
+            });
+            Kokkos::deep_copy(d_A, d_A_new);
+        }
 
-        jacobi_iteration(A, A_new, iterations);
-
-        double time = timer.seconds();
-
-        // Calculate bandwidth.
-        double Gbytes = 1.0e-9 * double(sizeof(uint8_t) * (img.rows * img.cols * cn * 4));
-
-        // Print results (problem size, time and bandwidth in GB/s).
-        printf("time( %g s ) bandwidth( %g GB/s )\n",
-               time, Gbytes / time);
-
-        int N = A.extent(0);
-        int M = A.extent(1);
-        Kokkos::parallel_for("output_image", Kokkos::MDRangePolicy<Kokkos::Rank<3>>({0, 0, 0}, {N, M, 3}), KOKKOS_LAMBDA(int i, int j, int c) {
-            pixelPtr[i * M * cn + j * cn + c] = A_new(i, j, c);
+        // Copie des données vers le CPU
+        Kokkos::parallel_for("copy_to_host", Kokkos::MDRangePolicy<Kokkos::Rank<2>>({0, 0}, {A.rows, A.cols}), KOKKOS_LAMBDA(const int i, const int j) {
+            A.at<double>(i, j) = d_A(i, j);
         });
     }
     Kokkos::finalize();
-
-    fprintf(stdout, "Writting the output image of size %dx%d...\n", img.rows, img.cols);
-
-    imwrite("../../res/test.jpg", img);
-    imwrite("../../res/test_noise.jpg", mColorNoise);
-    return 0;
 }
