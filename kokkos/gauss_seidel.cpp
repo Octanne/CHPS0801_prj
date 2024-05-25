@@ -79,31 +79,27 @@ void gauss_seidel_parallel_fronts_cpu(cv::Mat& A, cv::Mat& A_new, int iterations
 
     cv::Mat A_iter(A_copy.size(), A_copy.type());
 
-    uint8_t* new_pixelPtr = (uint8_t*)A_iter.data;
-    uint8_t* pixelPtr = (uint8_t*)A_copy.data;
-
     // Apply the Gauss-Seidel iteration
     for (int iter = 0; iter < iterations; ++iter) {
         Kokkos::parallel_for("gauss_seidel_parallel", Kokkos::MDRangePolicy<Kokkos::Rank<2>>({1, 1}, {N-1, M-1}),
         KOKKOS_LAMBDA(const int i, const int j) {
             for (int c = 0; c < cn; ++c) {
-                uint8_t p_current = pixelPtr[i*M*cn + j*cn + c];
-                uint8_t p_top = new_pixelPtr[(i-1)*M*cn + j*cn + c];
-                uint8_t p_bottom = pixelPtr[(i+1)*M*cn + j*cn + c];
-                uint8_t p_left = new_pixelPtr[i*M*cn + (j-1)*cn + c];
-                uint8_t p_right = pixelPtr[i*M*cn + (j+1)*cn + c];
+                uint8_t p_current = A_copy.at<cv::Vec3b>(i, j)[c];
+                uint8_t p_top = A_copy.at<cv::Vec3b>(i-1, j)[c];
+                uint8_t p_bottom = A_copy.at<cv::Vec3b>(i+1, j)[c];
+                uint8_t p_left = A_copy.at<cv::Vec3b>(i, j-1)[c];
+                uint8_t p_right = A_copy.at<cv::Vec3b>(i, j+1)[c];
                 uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
-                new_pixelPtr[i*M*cn + j*cn + c] = new_pixel;
+                A_iter.data[i*M*cn + j*cn + c] = new_pixel;
             }
         });
 
         // Update the image for the next iteration
         A_iter.copyTo(A_copy);
-        std::cout << "Iteration " << iter << " done\r";
     }
 
     // Copy the middle of the image to the output image
-    A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
+    A_copy(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2)).copyTo(A_new);
 }
 
 /**
@@ -122,8 +118,6 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
     int M = A_copy.cols;
     int cn = A_copy.channels();
 
-    cv::Mat A_iter(A_copy.size(), A_copy.type());
-
     Kokkos::View<uint8_t***> d_A("A", N, M, cn);
     Kokkos::View<uint8_t***> d_A_new("A_new", N, M, cn);
 
@@ -137,9 +131,9 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
         KOKKOS_LAMBDA(const int i, const int j) {
             for (int c = 0; c < cn; ++c) {
                 uint8_t p_current = d_A(i, j, c);
-                uint8_t p_top = d_A_new(i - 1, j, c);
+                uint8_t p_top = d_A(i - 1, j, c);
                 uint8_t p_bottom = d_A(i + 1, j, c);
-                uint8_t p_left = d_A_new(i, j - 1, c);
+                uint8_t p_left = d_A(i, j - 1, c);
                 uint8_t p_right = d_A(i, j + 1, c);
                 uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
                 d_A_new(i, j, c) = new_pixel;
@@ -211,7 +205,6 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
         Kokkos::fence();
 
         A_iter.copyTo(A_copy);
-        std::cout << "Iteration " << iter << " done\r";
     }
 
     A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);

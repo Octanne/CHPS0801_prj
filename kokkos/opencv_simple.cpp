@@ -7,7 +7,7 @@
 using namespace cv;
 using namespace std;
 
-#define NOISE_ITER 15
+#define NOISE_ITER 1
 
 int main(int argc, char** argv)
 {
