@@ -11,12 +11,32 @@ using namespace std;
 
 int main(int argc, char** argv)
 {
-    CommandLineParser parser(argc, argv,
-                                "{@input   |img/lena.jpg|input image}");
-    parser.printMessage();
+    const String keys =
+    "{input |img/lena.jpg|input image}"
+    "{filter |jacobi|filter to apply}"
+    "{help h usage ? | | print this message}"
+    "{iteration |1|number of iterations for the filter}"
+    ;
+    CommandLineParser parser(argc, argv, keys);
 
-    String imageName = parser.get<String>("@input");
-    string image_path = samples::findFile(imageName);
+    // We print the help message if the user asks for it
+    if(parser.has("help"))
+    {
+        parser.printMessage();
+        return 0;
+    }
+
+    String imageName = parser.get<String>("input");
+    String filterName = parser.get<String>("filter");
+    int iterations = parser.get<int>("iteration");
+    string image_path = samples::findFile(imageName, false, true);
+    // Vérification de l'existence de l'image
+    if(image_path.empty())
+    {
+        std::cout << "Could not read the image: " << imageName << std::endl;
+        return 1;
+    }
+    // Lecture de l'image
     Mat img = imread(image_path, IMREAD_COLOR);
     if(img.empty())
     {
@@ -24,8 +44,12 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    Mat mColorNoise(img.size(),img.type());
+    // Affichage des parametres de l'execution
+    cout << "Filter to apply: " << filterName << endl;
+    cout << "Number of iterations: " << iterations << endl;
 
+    // Bruitage de l'image
+    Mat mColorNoise(img.size(),img.type());
     for(int i = 0; i < NOISE_ITER; ++i)
     {
         AddGaussianNoise(img,mColorNoise,0,30.0);
@@ -37,17 +61,61 @@ int main(int argc, char** argv)
         }
     }
 
+    // On creer une matrice pour stocker le resultat
+    Mat m_result_filter(img.size(),img.type());
+
+    // On creer le nom du fichier de sortie
+    string filter_file_name = "res/" + filterName + "_res.jpg";
+
+    // On marque le temps de debut
+    double start = getTickCount();
+
+    // On applique le filtre suivant la valeur de filterName   
+    // Jacobi
+    if(filterName == "jacobi")
+    {
+        jacobi_sequential(mColorNoise, m_result_filter, iterations);
+    }    
+    else if(filterName == "jacobi_cpu")
+    {
+        jacobi_parallel_cpu(mColorNoise, m_result_filter, iterations);
+    }
+    // Gauss Seidel
+    else if(filterName == "gauss_seidel")
+    {
+        gauss_seidel_sequential(mColorNoise, m_result_filter, iterations);
+    }    
+    else if(filterName == "gauss_seidel_cpu")
+    {
+        gauss_seidel_parallel_fronts_cpu(mColorNoise, m_result_filter, iterations);
+    }
+    // Non trouvé
+    else
+    {
+        cout << "Filter not found" << endl;
+        return 1;
+    }
+
+    // On marque le temps de fin
+    double end = getTickCount();
+    double time = (end - start) / getTickFrequency();
+    cout << "Execution time: " << time << "s" << endl;
+
+    fprintf(stdout, "Writting the output image of size %dx%d...\n", img.rows, img.cols);
+
+    imwrite("res/noised_res.jpg", mColorNoise);
+    imwrite(filter_file_name, m_result_filter);
+    
+    return 0;
+}
+
+/**
+ * Old code
+*/
+void old() {
+    /*
     //AddGaussianNoise_Opencv(img,mColorNoise,10,30.0);//I recommend to use this way!
 
-    Mat mJacobi_seq(img.size(),img.type());
-    Mat m_Seidel_seq(img.size(),img.type());
-
-    // We will use the jacobi_sequential function
-    jacobi_sequential(mColorNoise, mJacobi_seq, 1);
-    // We will use the gauss_seidel_sequential function
-    gauss_seidel_sequential(mColorNoise, m_Seidel_seq, 1);
-
-    /*
     uint8_t* pixelPtr = (uint8_t*)img.data;
     int cn = img.channels();
 
@@ -67,12 +135,5 @@ int main(int argc, char** argv)
         }
     }*/
 
-    fprintf(stdout, "Writting the output image of size %dx%d...\n", img.rows, img.cols);
-
     //imwrite("res/grey_res.jpg", img);
-    imwrite("res/noised_res.jpg", mColorNoise);
-    imwrite("res/jacobi_seq.jpg", mJacobi_seq);
-    imwrite("res/gauss_seidel_seq.jpg", m_Seidel_seq);
-    
-    return 0;
 }
