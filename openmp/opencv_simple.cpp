@@ -18,7 +18,7 @@ int main(int argc, char** argv)
     "{filter |jacobi|filter to apply}"
     "{help h usage ? | | print this message}"
     "{iteration |1|number of iterations for the filter}"
-    "{cpu |8|number of threads for the filter}"
+    "{cpu |1|number of threads for the filter}"
     "{noise_iter |15|number of iterations for the noise}"
     ;
     CommandLineParser parser(argc, argv, keys);
