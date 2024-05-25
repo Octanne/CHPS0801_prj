@@ -285,7 +285,7 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
    permettant ainsi une parallélisation efficace tout en maintenant l'exactitude 
    de l'algorithme de Gauss-Seidel.
 */
-void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
+/*void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
     // Ajout d'un bordure de 1 pixel tout autour de l'image d'entrée
     cv::Mat A_copy(cv::Size(A.size().width + 2, A.size().height + 2), A.type());
     cv::copyMakeBorder(A, A_copy, 1, 1, 1, 1, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
@@ -352,4 +352,67 @@ void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
     //A_result.copyTo(A_new);
     // Copy the middle of the image to the output image
     A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
+}*/
+
+void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
+    // Ajout d'une bordure de 1 pixel tout autour de l'image d'entrée
+    cv::Mat A_copy(cv::Size(A.size().width + 2, A.size().height + 2), A.type());
+    cv::copyMakeBorder(A, A_copy, 1, 1, 1, 1, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
+
+    int N = A_copy.rows;
+    int M = A_copy.cols;
+    int cn = A_copy.channels();
+
+    cv::Mat A_iter(A_copy.size(), A_copy.type());
+
+    uint8_t* pixelPtr = A_copy.data;
+    uint8_t* new_pixelPtr = A_iter.data;
+
+    for (int iter = 0; iter < iterations; ++iter) {
+        // Mise à jour des "cases rouges"
+        #pragma omp target data map(to: pixelPtr[0:N*M*cn]) map(from: new_pixelPtr[0:N*M*cn])
+        {
+            #pragma omp target teams distribute parallel for collapse(2)
+            for (int i = 1; i < N - 1; ++i) {
+                for (int j = 1; j < M - 1; ++j) {
+                    if ((i + j) % 2 == 0) { // "cases rouges"
+                        for (int c = 0; c < cn; ++c) {
+                            uint8_t p_current = pixelPtr[(i * M + j) * cn + c];
+                            uint8_t p_top = pixelPtr[((i - 1) * M + j) * cn + c];
+                            uint8_t p_bottom = pixelPtr[((i + 1) * M + j) * cn + c];
+                            uint8_t p_left = pixelPtr[(i * M + (j - 1)) * cn + c];
+                            uint8_t p_right = pixelPtr[(i * M + (j + 1)) * cn + c];
+                            uint8_t new_pixel = static_cast<uint8_t>(0.2f * (p_current + p_top + p_bottom + p_left + p_right));
+                            new_pixelPtr[(i * M + j) * cn + c] = new_pixel;
+                        }
+                    }
+                }
+            }
+
+            // Mise à jour des "cases noires"
+            #pragma omp target teams distribute parallel for collapse(2)
+            for (int i = 1; i < N - 1; ++i) {
+                for (int j = 1; j < M - 1; ++j) {
+                    if ((i + j) % 2 != 0) { // "cases noires"
+                        for (int c = 0; c < cn; ++c) {
+                            uint8_t p_current = pixelPtr[(i * M + j) * cn + c];
+                            uint8_t p_top = pixelPtr[((i - 1) * M + j) * cn + c];
+                            uint8_t p_bottom = pixelPtr[((i + 1) * M + j) * cn + c];
+                            uint8_t p_left = pixelPtr[(i * M + (j - 1)) * cn + c];
+                            uint8_t p_right = pixelPtr[(i * M + (j + 1)) * cn + c];
+                            uint8_t new_pixel = static_cast<uint8_t>(0.2f * (p_current + p_top + p_bottom + p_left + p_right));
+                            new_pixelPtr[(i * M + j) * cn + c] = new_pixel;
+                        }
+                    }
+                }
+            }
+        }
+
+        std::swap(pixelPtr, new_pixelPtr);
+        std::cout << "Iteration " << iter << " done\r";
+    }
+
+    // Copier le résultat final dans A_new
+    cv::Mat result(cv::Size(A.size().width, A.size().height), A.type(), pixelPtr + (M + 1) * cn);
+    result.copyTo(A_new);
 }
