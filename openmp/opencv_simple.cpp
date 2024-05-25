@@ -92,7 +92,7 @@ int main(int argc, char** argv)
     else if(filterName == "jacobi_cpu")
     {
         jacobi_parallel_cpu(mColorNoise, m_result_filter, iterations);
-    }    
+    }
     else if(filterName == "jacobi_gpu")
     {
         jacobi_parallel_gpu(mColorNoise, m_result_filter, iterations);
