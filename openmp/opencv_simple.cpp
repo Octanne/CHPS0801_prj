@@ -92,15 +92,31 @@ int main(int argc, char** argv)
     else if(filterName == "jacobi_cpu")
     {
         jacobi_parallel_cpu(mColorNoise, m_result_filter, iterations);
+    }    
+    else if(filterName == "jacobi_gpu")
+    {
+        jacobi_parallel_gpu(mColorNoise, m_result_filter, iterations);
     }
     // Gauss Seidel
     else if(filterName == "gauss_seidel")
     {
         gauss_seidel_sequential(mColorNoise, m_result_filter, iterations);
     }    
-    else if(filterName == "gauss_seidel_cpu")
+    else if(filterName == "gauss_seidel_front_cpu")
     {
         gauss_seidel_parallel_fronts_cpu(mColorNoise, m_result_filter, iterations);
+    }
+    else if(filterName == "gauss_seidel_rb_cpu")
+    {
+        gauss_seidel_parallel_fronts_cpu(mColorNoise, m_result_filter, iterations);
+    }    
+    else if(filterName == "gauss_seidel_front_gpu")
+    {
+        gauss_seidel_parallel_fronts_gpu(mColorNoise, m_result_filter, iterations);
+    }
+    else if(filterName == "gauss_seidel_rb_gpu")
+    {
+        gauss_seidel_parallel_fronts_gpu(mColorNoise, m_result_filter, iterations);
     }
     // Non trouvé
     else
