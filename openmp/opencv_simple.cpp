@@ -108,7 +108,7 @@ int main(int argc, char** argv)
     }
     else if(filterName == "gauss_seidel_rb_cpu")
     {
-        gauss_seidel_parallel_fronts_cpu(mColorNoise, m_result_filter, iterations);
+        gauss_seidel_rb_parallel_cpu(mColorNoise, m_result_filter, iterations);
     }    
     else if(filterName == "gauss_seidel_front_gpu")
     {
@@ -116,7 +116,7 @@ int main(int argc, char** argv)
     }
     else if(filterName == "gauss_seidel_rb_gpu")
     {
-        gauss_seidel_parallel_fronts_gpu(mColorNoise, m_result_filter, iterations);
+        gauss_seidel_rb_parallel_gpu(mColorNoise, m_result_filter, iterations);
     }
     // Non trouvé
     else

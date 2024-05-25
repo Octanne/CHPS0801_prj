@@ -129,31 +129,24 @@ void gauss_seidel_parallel_fronts_cpu(cv::Mat& A, cv::Mat& A_new, int iterations
 }
 
 /**
- * Explications :
+ *Explications :
 
-    1. Ajout de bordures : Nous ajoutons une bordure de 1 pixel tout autour de l'image d'entrée pour faciliter le traitement des pixels aux bords de l'image.
+    1. Bordure : On ajoute une bordure d'un pixel autour de l'image d'entrée pour éviter les problèmes de débordement de mémoire lorsque l'on accède aux voisins des pixels aux bords de l'image.
 
-    2. Initialisation des matrices : A_copy contient l'image d'entrée avec bordures, A_iter est utilisée pour stocker les nouvelles valeurs de pixels à chaque itération.
+    2. Vagues Diagonales : On traite les éléments de la matrice par vagues diagonales, où d représente la distance de la diagonale par rapport à l'origine (1, 1). Les indices i et j sont calculés en fonction de d pour suivre cette vague.
 
-    3. Boucle d'itération : La boucle principale pour les itérations de Gauss-Seidel.
+    3. Parallélisation avec OpenMP : On utilise OpenMP pour paralléliser le traitement des vagues diagonales. Le schedule(dynamic) permet une distribution dynamique des itérations pour un meilleur équilibrage de la charge entre les threads.
 
-    4. Traitement par diagonales :
-        Nous traitons les pixels en bandes diagonales.
-        Pour chaque diagonale (d), nous itérons sur les pixels (i, j) de cette diagonale.
-        Chaque tâche dépend des valeurs des pixels adjacents (i-1, j), (i+1, j), (i, j-1), et (i, j+1).
+    4. Mise à jour des Pixels : Pour chaque pixel (i, j), on calcule la nouvelle valeur en utilisant les voisins directs (haut, bas, gauche, droite) et on met à jour le pixel dans l'image de sortie A_new.
 
-    5. Dépendances des tâches : Les directives depend(in: ...) et depend(out: ...) d'OpenMP garantissent que les tâches sont exécutées dans le bon ordre en respectant les dépendances des pixels.
+    5. Copie de l'Image : Après chaque itération, on copie l'image mise à jour A_new dans A_copy pour la prochaine itération, en prenant soin de ne copier que la région sans bordure.
 
-    6. Copie des résultats : Après chaque itération, nous copions A_iter dans A_copy pour la prochaine itération.
-
-    7. Sortie des résultats : À la fin des itérations, nous copions le résultat final dans A_new sans les bordures ajoutées.
-
-   Cette méthode garantit que les dépendances entre les pixels sont respectées, 
-   permettant ainsi une parallélisation efficace tout en maintenant l'exactitude 
-   de l'algorithme de Gauss-Seidel.
+  Cette méthode assure que les dépendances sont correctement gérées et 
+  que chaque vague est calculée indépendamment, ce qui devrait éviter
+  les artefacts tels que les traits horizontaux. 
 */
 void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
-    // Ajout d'un bordure de 1 pixel tout autour de l'image d'entrée
+    // Ajout d'une bordure de 1 pixel tout autour de l'image d'entrée
     cv::Mat A_copy(cv::Size(A.size().width + 2, A.size().height + 2), A.type());
     cv::copyMakeBorder(A, A_copy, 1, 1, 1, 1, cv::BORDER_CONSTANT, cv::Scalar(0, 0, 0));
 
@@ -161,34 +154,30 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
     int M = A_copy.cols;
     int cn = A_copy.channels();
 
-    cv::Mat A_iter(A_copy.size(), A_copy.type());
-
-    uint8_t* pixelPtr = (uint8_t*)A_copy.data;
-    uint8_t* new_pixelPtr = (uint8_t*)A_iter.data;
-
     for (int iter = 0; iter < iterations; ++iter) {
-        #pragma omp target data map(to: pixelPtr[0:N*M*cn]) map(from: new_pixelPtr[0:N*M*cn])
-        {
-            #pragma omp target teams distribute parallel for collapse(2)
-            for (int i = 1; i < N - 1; ++i) {
-                for (int j = 1; j < M - 1; ++j) {
-                    for (int c = 0; c < cn; ++c) {
-                        uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
-                        uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
-                        uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
-                        uint8_t p_left = new_pixelPtr[i * M * cn + (j - 1) * cn + c];
-                        uint8_t p_right = pixelPtr[i * M * cn + (j + 1) * cn + c];
-                        uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
-                        new_pixelPtr[i * M * cn + j * cn + c] = new_pixel;
-                    }
+        #pragma omp parallel for collapse(1) schedule(dynamic)
+        for (int d = 1; d < N + M - 3; ++d) {
+            int start_i = std::max(1, d - (M - 2));
+            int end_i = std::min(N - 2, d);
+            for (int i = start_i; i <= end_i; ++i) {
+                int j = d - i + 1;
+                if (j < 1 || j >= M - 1) continue;
+                for (int c = 0; c < cn; ++c) {
+                    uint8_t p_current = A_copy.at<cv::Vec3b>(i, j)[c];
+                    uint8_t p_top = A_copy.at<cv::Vec3b>(i - 1, j)[c];
+                    uint8_t p_bottom = A_copy.at<cv::Vec3b>(i + 1, j)[c];
+                    uint8_t p_left = A_copy.at<cv::Vec3b>(i, j - 1)[c];
+                    uint8_t p_right = A_copy.at<cv::Vec3b>(i, j + 1)[c];
+                    uint8_t new_pixel = 0.2 * (p_current + p_top + p_bottom + p_left + p_right);
+                    A_new.at<cv::Vec3b>(i-1, j-1)[c] = new_pixel;
                 }
             }
         }
-        A_iter.copyTo(A_copy);
+        A_new.copyTo(A_copy(cv::Rect(1, 1, A_new.cols, A_new.rows)));
         std::cout << "Iteration " << iter << " done\r";
     }
 
-    A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
+    A_copy(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2)).copyTo(A_new);
 }
 
 /**
@@ -288,6 +277,7 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
     A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
 }
 
+// Gauss-Seidel Red-Black Parallel GPU : rend plus sombre l'image
 /**
  * Explications :
 
@@ -354,7 +344,8 @@ void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
             }
 
             // Synchronize to ensure red phase is done
-            #pragma omp barrier
+            //#pragma omp barrier
+            #pragma omp target update from(new_pixelPtr[0:N*M*cn])
 
             // Black phase
             #pragma omp target teams distribute parallel for
