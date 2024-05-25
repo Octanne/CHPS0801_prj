@@ -4,6 +4,8 @@
 #include "jacobi.h"
 #include "gauss_seidel.h"
 
+#include <omp.h>
+
 using namespace cv;
 using namespace std;
 
@@ -16,6 +18,7 @@ int main(int argc, char** argv)
     "{filter |jacobi|filter to apply}"
     "{help h usage ? | | print this message}"
     "{iteration |1|number of iterations for the filter}"
+    "{cpu |8|number of threads for the filter}"
     ;
     CommandLineParser parser(argc, argv, keys);
 
@@ -29,6 +32,7 @@ int main(int argc, char** argv)
     String imageName = parser.get<String>("input");
     String filterName = parser.get<String>("filter");
     int iterations = parser.get<int>("iteration");
+    int num_threads = parser.get<int>("cpu");
     string image_path = samples::findFile(imageName, false, true);
     // Vérification de l'existence de l'image
     if(image_path.empty())
@@ -43,6 +47,9 @@ int main(int argc, char** argv)
         std::cout << "Could not read the image: " << image_path << std::endl;
         return 1;
     }
+
+    // On set le nombre de threads
+    omp_set_num_threads(num_threads);
 
     // Affichage des parametres de l'execution
     cout << "Filter to apply: " << filterName << endl;
@@ -69,6 +76,12 @@ int main(int argc, char** argv)
 
     // On marque le temps de debut
     double start = getTickCount();
+
+    // On affiche le nombre de threads si le filtre contient le mot CPU
+    if(filterName.find("cpu") != string::npos)
+    {
+        cout << "Number of threads: " << omp_get_max_threads() << "/" << omp_get_num_procs() << endl;
+    }
 
     // On applique le filtre suivant la valeur de filterName   
     // Jacobi

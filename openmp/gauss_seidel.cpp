@@ -24,7 +24,7 @@ void gauss_seidel_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
         // Iterate over the interior pixels
         for (int i = 1; i < N-1; ++i) {
             for (int j = 1; j < M-1; ++j) {
-                for (int c = 0; c < 3; ++c) {
+                for (int c = 0; c < cn; ++c) {
                     // Gauss-Seidel plus compliqué a paralléliser
                     // Car on a besoin des valeurs des pixels voisins déjà calculés
                     // PixelPTR is the instant k and new_pixelPTR is the instant k+1
@@ -48,7 +48,7 @@ void gauss_seidel_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
 
         // Update the image for the next iteration
         A_iter.copyTo(A_copy);
-        cout << "\nIteration " << iter << " done" << endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     // Copy the middle of the image to the output image
@@ -105,7 +105,7 @@ void gauss_seidel_parallel_fronts_cpu(cv::Mat& A, cv::Mat& A_new, int iterations
                         if (j >= 1 && j < M - 1) {
                             #pragma omp task depend(in: pixelPtr[(i-1)*M*cn + j*cn], pixelPtr[(i+1)*M*cn + j*cn], pixelPtr[i*M*cn + (j-1)*cn], pixelPtr[i*M*cn + (j+1)*cn]) depend(out: new_pixelPtr[i*M*cn + j*cn])
                             {
-                                for (int c = 0; c < 3; ++c) {
+                                for (int c = 0; c < cn; ++c) {
                                     uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
                                     uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
                                     uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -122,7 +122,7 @@ void gauss_seidel_parallel_fronts_cpu(cv::Mat& A, cv::Mat& A_new, int iterations
             }
         }
         A_iter.copyTo(A_copy);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
@@ -172,7 +172,7 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
             #pragma omp target teams distribute parallel for collapse(2)
             for (int i = 1; i < N - 1; ++i) {
                 for (int j = 1; j < M - 1; ++j) {
-                    for (int c = 0; c < 3; ++c) {
+                    for (int c = 0; c < cn; ++c) {
                         uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
                         uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
                         uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -185,7 +185,7 @@ void gauss_seidel_parallel_fronts_gpu(cv::Mat& A, cv::Mat& A_new, int iterations
             }
         }
         A_iter.copyTo(A_copy);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     A_iter(cv::Rect(1, 1, A_iter.cols - 2, A_iter.rows - 2)).copyTo(A_new);
@@ -241,7 +241,7 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
             int j = 1 + index % (M - 2);
 
             if ((i + j) % 2 == 0) {  // Red phase condition
-                for (int c = 0; c < 3; ++c) {
+                for (int c = 0; c < cn; ++c) {
                     uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
                     uint8_t p_top = pixelPtr[(i - 1) * M * cn + j * cn + c];
                     uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -263,7 +263,7 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
             int j = 1 + index % (M - 2);
 
             if ((i + j) % 2 == 1) {  // Black phase condition
-                for (int c = 0; c < 3; ++c) {
+                for (int c = 0; c < cn; ++c) {
                     uint8_t p_current = new_pixelPtr[i * M * cn + j * cn + c];
                     uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
                     uint8_t p_bottom = new_pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -279,7 +279,7 @@ void gauss_seidel_rb_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
         #pragma omp barrier
 
         std::swap(pixelPtr, new_pixelPtr);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     //cv::Mat A_result(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2));
@@ -341,7 +341,7 @@ void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
                 int j = 1 + index % (M - 2);
 
                 if ((i + j) % 2 == 0) { // Red phase condition
-                    for (int c = 0; c < 3; ++c) {
+                    for (int c = 0; c < cn; ++c) {
                         uint8_t p_current = pixelPtr[i * M * cn + j * cn + c];
                         uint8_t p_top = pixelPtr[(i - 1) * M * cn + j * cn + c];
                         uint8_t p_bottom = pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -363,7 +363,7 @@ void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
                 int j = 1 + index % (M - 2);
 
                 if ((i + j) % 2 == 1) { // Black phase condition
-                    for (int c = 0; c < 3; ++c) {
+                    for (int c = 0; c < cn; ++c) {
                         uint8_t p_current = new_pixelPtr[i * M * cn + j * cn + c];
                         uint8_t p_top = new_pixelPtr[(i - 1) * M * cn + j * cn + c];
                         uint8_t p_bottom = new_pixelPtr[(i + 1) * M * cn + j * cn + c];
@@ -376,7 +376,7 @@ void gauss_seidel_rb_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
             }
         }
         std::swap(pixelPtr, new_pixelPtr);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     //cv::Mat A_result(cv::Rect(1, 1, A_copy.cols - 2, A_copy.rows - 2));

@@ -24,7 +24,7 @@ void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
         // Iterate over the interior pixels
         for (int i = 1; i < N-1; ++i) {
             for (int j = 1; j < M-1; ++j) {
-                for (int c = 0; c < 3; ++c) {
+                for (int c = 0; c < cn; ++c) {
                     // Current pixel0
                     uint8_t p_current = pixelPtr[i*M*cn + j*cn + c];
                     // Top pixel
@@ -46,7 +46,7 @@ void jacobi_sequential(cv::Mat& A, cv::Mat& A_new, int iterations) {
 
         // Update the image for the next iteration
         A_iter.copyTo(A_copy);
-        cout << "\nIteration " << iter << " done" << endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     // Copy the middle of the image to the output image
@@ -97,7 +97,7 @@ void jacobi_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
         #pragma omp parallel for collapse(2)
         for (int i = 1; i < N-1; ++i) {
             for (int j = 1; j < M-1; ++j) {
-                for (int c = 0; c < 3; ++c) {
+                for (int c = 0; c < cn; ++c) {
                     // Pixel actuel
                     uint8_t p_current = pixelPtr[i*M*cn + j*cn + c];
                     // Pixel supérieur
@@ -118,7 +118,7 @@ void jacobi_parallel_cpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
 
         // Mettre à jour l'image pour la prochaine itération
         A_iter.copyTo(A_copy);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     // Copier le milieu de l'image dans l'image de sortie
@@ -171,7 +171,7 @@ void jacobi_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
             #pragma omp target teams distribute parallel for collapse(2)
             for (int i = 1; i < N-1; ++i) {
                 for (int j = 1; j < M-1; ++j) {
-                    for (int c = 0; c < 3; ++c) {
+                    for (int c = 0; c < cn; ++c) {
                         // Pixel actuel
                         uint8_t p_current = pixelPtr[i*M*cn + j*cn + c];
                         // Pixel supérieur
@@ -193,7 +193,7 @@ void jacobi_parallel_gpu(cv::Mat& A, cv::Mat& A_new, int iterations) {
 
         // Mettre à jour l'image pour la prochaine itération
         A_iter.copyTo(A_copy);
-        std::cout << "\nIteration " << iter << " done" << std::endl;
+        std::cout << "Iteration " << iter << " done\r";
     }
 
     // Copier le milieu de l'image dans l'image de sortie
