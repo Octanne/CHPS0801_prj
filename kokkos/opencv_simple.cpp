@@ -7,7 +7,7 @@
 using namespace cv;
 using namespace std;
 
-#define NOISE_ITER 1
+#define NOISE_ITER 15
 
 int main(int argc, char** argv)
 {
@@ -16,6 +16,7 @@ int main(int argc, char** argv)
     "{filter |jacobi|filter to apply (jacobi - jacobi_cpu - jacobi_gpu - gauss_seidel - gauss_seidel_fronts_cpu - gauss_seidel_fronts_gpu - gauss_seidel_rb_cpu - gauss_seidel_rb_gpu)}"
     "{help h usage ? | | print this message}"
     "{iteration |1|number of iterations for the filter}"
+    "{noise_iter |15|number of iterations of the noise maker}"
     "{cpu |8|number of threads for the filter}"
     ;
     CommandLineParser parser(argc, argv, keys);
@@ -31,6 +32,7 @@ int main(int argc, char** argv)
     String filterName = parser.get<String>("filter");
     int iterations = parser.get<int>("iteration");
     int num_threads = parser.get<int>("cpu");
+    int noise_iter = parser.get<int>("noise_iter");
     string image_path = samples::findFile(imageName, false, true);
 
     // Vérification de l'existence de l'image
@@ -55,10 +57,10 @@ int main(int argc, char** argv)
 
     // Bruitage de l'image
     Mat mColorNoise(img.size(), img.type());
-    for(int i = 0; i < NOISE_ITER; ++i)
+    for(int i = 0; i < noise_iter; ++i)
     {
         AddGaussianNoise(img, mColorNoise, 0, 30.0);
-        if(i < (NOISE_ITER - 1))
+        if(i < (noise_iter - 1))
         {
             uint8_t* tmp = img.data;
             img.data = mColorNoise.data;

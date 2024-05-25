@@ -46,7 +46,7 @@
 # test: $(EXE)
 # 	./$(EXE)
 
-KOKKOS_PATH = /home/noxii/Kokkos/kokkos
+KOKKOS_PATH = ${HOME}/Kokkos/kokkos
 KOKKOS_DEVICES = "OpenMP"
 EXE_NAME = "kokkos_jacobi"
 
