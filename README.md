@@ -24,4 +24,3 @@ Pour avoir la liste des filtres :
 - img/ : contient les images d'entrée.
 - res/ : contient les images résultantes.
 - Makefile : fichier de configuration pour la compilation.
-
