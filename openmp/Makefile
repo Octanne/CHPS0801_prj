@@ -12,11 +12,9 @@ CFLAGS += $(shell pkg-config --cflags opencv4)
 LDFLAGS += $(shell pkg-config --libs opencv4)
 
 # Flags pour OpenMP et CUDA
+# Pour mon ordinateur local -march=sm_61 mais pour ROMEO c'est -march=sm_60
 CFLAGS += -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda -Xopenmp-target=nvptx64-nvidia-cuda -march=sm_61
-LDFLAGS += -L/usr/local/cuda/lib64 -lstdc++
-LDFLAGS += -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda -Xopenmp-target=nvptx64-nvidia-cuda -march=sm_61
-#-lcudart -lcuda -lcublas -lcufft
-NVCCFLAGS = -fopenmp -fopenmp-targets=nvptx64-nvidia-cuda -Xopenmp-target=nvptx64-nvidia-cuda -march=sm_61
+LDFLAGS += -lstdc++
 
 # Règles de compilation
 opencv_test.pgr: obj/opencv_simple.o obj/gaussianNoise.o obj/jacobi.o obj/gauss_seidel.o
@@ -26,10 +24,6 @@ obj/%.o: %.cpp
         mkdir -p obj
         $(CC) $(CFLAGS) -c $< -o $@
 
-obj/%.o: %.cu
-        mkdir -p obj
-        $(NVCC) $(NVCCFLAGS) -c $< -o $@
-
 # Règle pour nettoyer les fichiers objets
 proper:
         rm -f obj/*.o
@@ -37,3 +31,4 @@ proper:
 # Règle pour nettoyer tous les fichiers générés
 clean:
         rm -rf obj/*.o *.pgr
+                                                       
